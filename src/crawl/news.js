@@ -22,13 +22,17 @@ const getNews = async () => {
       const title = test(parentElm)
         .find("a > article > div.style__Info-sc-1h41bzo-6.evyNIL > div > h2")
         .text();
+      const type = test(parentElm).find("a > article > div.style__Info-sc-1h41bzo-6.evyNIL > div > div.style__Category-d3b0qh-0.gUa-DcG").text();
+      let author = test(parentElm).find("a > article > div.style__Info-sc-1h41bzo-6.evyNIL > div > div.style__Meta-sc-1h41bzo-10.kxUA-ds").text();
+      if(!author){
+        author = 'Riot game'
+      }
       let image = test(parentElm).find(
         "a > article > div.style__Image-sc-1h41bzo-2.cbzxFR > div > div > img"
       );
       image = image[0].attribs["src"];
-      itemArr.push({ id, title, link, image });
+      itemArr.push({ id, title, link, image, type, author });
     });
-    console.log(itemArr);
     return itemArr;
   } catch (error) {
     console.log(error);
@@ -36,3 +40,5 @@ const getNews = async () => {
 };
 
 getNews();
+
+module.exports = getNews;
