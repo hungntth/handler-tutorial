@@ -1,12 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { getAllChamp } = require("../controller/championController");
 
-router.get('/', (req,res) => {
-    res.render('home');
-})
+router.get("/", (req, res) => {
+  return getAllChamp(req, res);
+});
 
-router.get('/:name', (req,res) => {
-    res.render('detail');
-})
+router.get("/:name", (req, res) => {
+  res.render("detail");
+});
 
-module.exports = router
+module.exports = router;
