@@ -1,0 +1,20 @@
+{{#each news}}
+<div class="card mb-3" >
+    <div class="card-header text-info">
+    <h5>{{this.type}}</h5>
+  </div>
+   <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{this.image}}" class="img-fluid rounded-start" alt="{{this.title}}">
+    </div>
+    <div class="col-md-8">
+  <div class="card-body">
+    <h4 class="card-title">{{this.title}}</h4>
+    <p class="card-text">Tác giả: <b class="text-danger">{{this.author}}</b></p>
+    <a href="{{link}}" target="_blank" class="btn btn-primary">Xem bài viết</a>
+  </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
