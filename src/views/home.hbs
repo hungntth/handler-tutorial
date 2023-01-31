@@ -1,9 +1,11 @@
 {{#each champs}}
-  <img
-    src="{{this.image}}"
-    class="img-thumbnail mx-1 mb-2"
-    alt="{{this.name}}"
-    width="90"
-    height="90"
-  />
+  <a style="text-decoration: none" href="/getChamp/{{this.name}}">
+    <img
+      src="{{this.image}}"
+      class="img-thumbnail mx-1 mb-2"
+      alt="{{this.name}}"
+      width="90"
+      height="90"
+    />
+  </a>
 {{/each}}
