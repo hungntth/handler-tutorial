@@ -12,7 +12,18 @@ const getAllChamp = async () => {
     const elementSelector = `#content > div > div > div.champion-home > div.champions-container > a`;
     test(elementSelector).each((parentIdx, parentElm) => {
       const id = parentIdx + 1;
-      const name = test(parentElm).find("div.champion-name").text();
+      let name = test(parentElm).find("div.champion-name").text();
+      if(name === 'Renata Glasc'){
+        name = 'renata'
+      }
+      if(name.split(' ').length){
+        splitName = name.split(' ');
+        name = splitName.join('-');
+      }
+      if(name.split(`'`).length){
+        splitName = name.split(`'`);
+        name = splitName.join('-');
+      }
       let image = test(parentElm).find("div.image-wrapper > img");
       image = image[0].attribs["src"];
       itemArr.push({ id, name, image });
@@ -22,5 +33,6 @@ const getAllChamp = async () => {
     console.log(error);
   }
 };
+getAllChamp()
 
 module.exports = getAllChamp;

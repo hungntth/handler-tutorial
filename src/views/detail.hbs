@@ -20,26 +20,28 @@
   {{!-- start --}}
     <p>
       <span>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-    Toggle width collapse
-  </button>
- <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample1" aria-expanded="false" aria-controls="collapseWidthExample1">
-    Toggle width collapse
-  </button>
+        {{#each skills}}
+  <img
+      src="{{this.image}}"
+      class="img-thumbnail mx-1 mb-2"
+      alt="{{this.skill_name}}"
+      width="90"
+      height="90"
+      data-bs-toggle="collapse" data-bs-target="#{{this.skill_element}}" aria-expanded="false" aria-controls="{{this.skill_element}}"
+      style="cursor: pointer;"
+    />
+    {{/each}}
       </span>
 </p>
 <div style="min-height: 120px;" id="display_data">
-  <div class="collapse" data-bs-parent="#display_data" id="collapseWidthExample">
+  {{#each skills}}
+  <div class="collapse" data-bs-parent="#display_data" id="{{this.skill_element}}">
     <div class="card card-body">
-      This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+      <div class="p-3 mb-2 bg-secondary text-white">{{this.skill_description}}</div>
+      
     </div>
   </div>
-
-  <div class="collapse" data-bs-parent="#display_data" id="collapseWidthExample1">
-    <div class="card card-body">
-      1111111111111111111111111111111111111111111111111111111111111111111111111111111
-    </div>
-  </div>
+{{/each}}
 </div>
     {{!-- end --}}
 </div>
@@ -52,25 +54,22 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_1.jpg"
+            src="{{skin_default.skin_image}}"
             class="d-block w-100"
           />
-          <p>hello</p>
+          <h1 class="card-title text-center text-white bg-danger">{{skin_default.skin_name}}</h1>
         </div>
+        {{!-- start --}}
+        {{#each skins}}
         <div class="carousel-item">
           <img
-            src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_2.jpg"
+             src="{{this.skin_image}}"
             class="d-block w-100"
           />
-          <p>hello1</p>
+          <h1 class="card-title text-center text-white bg-danger">{{this.skin_name}}</h1>
         </div>
-        <div class="carousel-item">
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_3.jpg"
-            class="d-block w-100"
-          />
-          <p style="text-align: center;">hello2</p>
-        </div>
+        {{/each}}
+        {{!-- end --}}
       </div>
       <button
         class="carousel-control-prev"
