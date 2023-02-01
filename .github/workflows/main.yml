@@ -8,10 +8,10 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
       
-    - name: Use Node.js 16
+    - name: Use Node.js 14
       uses: actions/setup-node@v3
       with:
-        node-version: "16"
+        node-version: "14"
     - name: 🔨 Build Project
       run: |
         npm install
@@ -22,5 +22,3 @@ jobs:
         server: ${{ secrets.FRP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        dangerous-clean-slate: true
-        local-dir: ./
