@@ -1,0 +1,62 @@
+<h1>Tìm người đồng hành</h1>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          Group Chat
+        </div>
+        <ul class="list-group list-group-flush" id="message">
+        </ul>
+        <div class="card-footer">
+          <form id="chat-form">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Type your message here" id="chat-message">
+              <div class="input-group-append">
+                <button class="btn btn-primary" id="send-chat">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  const name = prompt('Nhập tên vào room chat')
+  const chatForm = document.querySelector('#chat-form');
+  const chatMes = document.querySelector('#chat-message');
+
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const message = chatMes.value
+    socket.emit('on-chat', {
+        name,
+        message: message
+    });
+    chatMes.value = ''
+    });
+
+    const messages = document.querySelector('#message');
+    socket.on('user-chat', (message) => {
+      console.log(message)
+      const chatItem = document.createElement('li');
+      chatItem.classList.add( "list-group-item");
+
+      const userName = document.createElement('strong');
+      userName.textContent = `${message.name}: `
+      chatItem.appendChild(userName);
+
+      const contentChat = document.createElement('span');
+      contentChat.textContent = message.message;
+      chatItem.appendChild(contentChat);
+
+      messages.appendChild(chatItem)
+    })
+  
+</script>
